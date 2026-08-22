@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int count[26] = {0};
+        for(char c : s ){
+            count[c - 'a'] ++;
+        }
+        for(char c : t){
+            count[c - 'a'] --;
+        }
+        for(int i  = 0 ; i < 26 ; i++){
+            if(count[i] != 0 ){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+int main() {
+    Solution sol;
+    cout << "anagram/nagaram → " << (sol.isAnagram("anagram", "nagaram") ? "是" : "否") << endl;  // 预期 是
+    cout << "rat/car         → " << (sol.isAnagram("rat", "car") ? "是" : "否") << endl;          // 预期 否
+    return 0;
+}
