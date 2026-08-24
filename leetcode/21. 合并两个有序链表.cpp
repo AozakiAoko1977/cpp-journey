@@ -11,6 +11,7 @@ struct ListNode {
 
 class Solution {
 public:
+    // 核心思路：用哨兵节点 dummy 简化头节点处理，cur 每次把两个链表中较小的节点接上去
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         ListNode dummy(0);                // 哨兵节点，避免处理头节点的边界问题
         ListNode* cur = &dummy;           // cur 指向已合并部分的末尾

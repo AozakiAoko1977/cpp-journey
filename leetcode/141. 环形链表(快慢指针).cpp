@@ -9,12 +9,13 @@ struct ListNode {
 
 class Solution {
 public:
+    // 快慢指针：fast 每次走两步，slow 每次走一步；有环时两指针一定会在环内相遇
     bool hasCycle(ListNode *head) {
-        ListNode* fast = head;
-        ListNode* slow = head;
-        while (fast != nullptr && fast->next != nullptr) {
-            slow = slow->next;
-            fast = fast->next->next;
+        ListNode* fast = head;                              // 快指针
+        ListNode* slow = head;                              // 慢指针
+        while (fast != nullptr && fast->next != nullptr) {  // fast 还能继续走（没到链表末尾）
+            slow = slow->next;                              // 慢指针走一步
+            fast = fast->next->next;                        // 快指针走两步
             if (slow == fast) {
                 return true;   // 相遇了，有环
             }

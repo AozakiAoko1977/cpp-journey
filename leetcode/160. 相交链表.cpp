@@ -9,14 +9,16 @@ struct ListNode {
 
 class Solution {
 public:
+    // 双指针交叉走：pa 走完 A 就换到 B 的头，pb 走完 B 就换到 A 的头；
+    // 若相交，两指针会同时走到交点；若不相交，会同时走到 nullptr
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode* pa = headA;
-        ListNode* pb = headB;
-        while(pa != pb){
-            pa = (pa != nullptr ) ? pa->next : headB;
-            pb = (pb != nullptr ) ? pb->next : headA;
+        ListNode* pa = headA;                          // pa 从 A 的头出发
+        ListNode* pb = headB;                          // pb 从 B 的头出发
+        while(pa != pb){                               // 两指针相遇（交点或 nullptr）时结束
+            pa = (pa != nullptr ) ? pa->next : headB;  // A 走完了就换到 B 的头
+            pb = (pb != nullptr ) ? pb->next : headA;  // B 走完了就换到 A 的头
         }
-        return pa;
+        return pa;                                     // 交点；不相交时两指针都为 nullptr
     }
 };
 

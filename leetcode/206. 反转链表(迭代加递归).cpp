@@ -11,7 +11,7 @@ struct ListNode {
 
 class Solution {
 public:
-    // 迭代版本
+    // 迭代版本：用 prev、curr、next 三个指针，逐个把 curr 的指向反转过来
     ListNode* reverseList(ListNode* head) {
         ListNode* prev = nullptr;
         ListNode* curr = head;
@@ -24,7 +24,7 @@ public:
         return prev;  // prev 是新头，curr 已经是 nullptr 了
     }
 
-    // 递归版本
+    // 递归版本：先递归反转后面的部分，再让下一个节点指回自己
     ListNode* reverseListRecursive(ListNode* head) {
         if (head == nullptr || head->next == nullptr) {
             return head;  // 空链表或只有一个节点，直接返回
@@ -46,6 +46,7 @@ void printList(ListNode* head) {
 }
 
 int main() {
+    // 原链表: 1 -> 2 -> 3 -> 4 -> 5
     ListNode* head = new ListNode(1);
     head->next = new ListNode(2);
     head->next->next = new ListNode(3);

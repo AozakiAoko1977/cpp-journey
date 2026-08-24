@@ -12,10 +12,12 @@ public:
 
     }
 
+    // 入队：直接压入输入栈 in
     void push(int x) {
         in.push(x);
     }
 
+    // 出队：当 out 为空时把 in 全部倒进 out，再取 out 栈顶
     int pop() {
         // out 空了才把 in 全部倒过来
         if (out.empty()) {
@@ -29,6 +31,7 @@ public:
         return x;
     }
 
+    // 取队首：与 pop 同样先保证 out 非空，返回 out 栈顶
     int peek() {
         if (out.empty()) {
             while (!in.empty()) {
@@ -39,6 +42,7 @@ public:
         return out.top();
     }
 
+    // 队列空判断：两个栈都空才是空
     bool empty() {
         return in.empty() && out.empty();  // 两个栈都空才是空
     }

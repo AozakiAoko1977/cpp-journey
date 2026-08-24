@@ -5,6 +5,7 @@ using namespace std;
 
 class Solution {
 public:
+    // 核心思路：用栈匹配括号，左括号入栈，右括号与栈顶配对，配对失败或最后栈非空都无效
     bool isValid(string s) {
         stack<char> st;
         for (char c : s) {

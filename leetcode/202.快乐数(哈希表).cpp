@@ -4,22 +4,23 @@ using namespace std;
 
 class Solution {
 public:
+    // 核心思路：不断求各位数字的平方和，用 set 记录出现过的数，出现循环就说明不是快乐数
     bool isHappy(int n) {
-        unordered_set<int> set;
-        while(n != 1){
-            set.insert(n);
+        unordered_set<int> set;              // 记录出现过的数，用于检测循环
+        while(n != 1){                       // 算到 1 才是快乐数
+            set.insert(n);                   // 记录当前数
             int sum = 0;
             while(n > 0){
-                int digit = n % 10;
-                sum += digit * digit;
-                n /= 10;
+                int digit = n % 10;          // 取出个位
+                sum += digit * digit;        // 累加个位的平方
+                n /= 10;                     // 去掉个位
             }
-            n = sum;
-            if(set.count(n)){
-                return false;
+            n = sum;                         // 得到下一次要处理的数
+            if(set.count(n)){                // 这个数之前出现过 → 陷入循环
+                return false;                // 不是快乐数
             }
         }
-        return true;
+        return true;                         // 到达 1，是快乐数
     }
 };
 

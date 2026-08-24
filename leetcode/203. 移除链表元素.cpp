@@ -11,19 +11,20 @@ struct ListNode {
 
 class Solution {
 public:
+    // 哨兵节点：dummy 挂在头节点前面，这样删除头节点时也不用特殊处理
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode dummy(0,head);
-        ListNode* cur =&dummy;
-        while( cur->next != nullptr ){
+        ListNode dummy(0,head);          // 哨兵节点，next 指向原链表头
+        ListNode* cur =&dummy;           // cur 从哨兵出发，始终检查 cur->next
+        while( cur->next != nullptr ){   // 还有节点可检查
             if( cur->next->val == val ){
-                cur->next = cur->next->next;
+                cur->next = cur->next->next;  // 下一个节点值为 val，跳过它（删除）
             }
             else{
-                cur = cur->next;
+                cur = cur->next;              // 不用删，cur 后移一位
             }
             
         }
-        return dummy.next;
+        return dummy.next;               // 哨兵的下一个才是真正的头节点
     }
 };
 
